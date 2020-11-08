@@ -10,10 +10,37 @@ Memory is reported in terms of Megabytes per node (Mc) or Megabytes per core (Mc
 
 
 Project questions
+<LEXA>
 While we have systematic checks in place to ensure the general system health of each compute node, we would like to use long-term data to see if there are any clusters of job failures on specific nodes. Do any of the production partition nodes show an unusual number of failed jobs relative to the others? Ignore the debug partition for this question.
 
+<ME>
 The CMS collaboration has an automated job submission system that runs jobs as "cmslocal" and "cmspilot". For these two users, jobs have internal system tests that will terminate their jobs early after approximately 30 minutes. Do any of their jobs that ended in under an hour also cluster on specific compute nodes, suggesting possbily unreliable systems? Check both “production” and “nogpfs” partitions. Look for commonly failing nodes and compare with other failed jobs.
 
+All cmslocal and cmspilot jobs are less than 3600 seconds.
+
+GO OVER COMMON VARIABLE NAMES
+MERGE BRANCHES
+CODE REVIEW
+WORK ON COMMENTS
+
+1.) Two data frames, cms and non-cms under 3601 seconds
+2.) Create data frame containing node list
+3.) Net total failures not a great metric, create percentages
+4.) Arbritary metric, top 25/50
+5.) Merge and concat, created some tags/flags
+6.) Graphs, natsort
+
+Who is going to drive the presentation?
+
+Worse to best graph
+
+-Compare node failure rate of top25/50 individual nodes to node usage of the full data frame
+	-To get a failure rate against node usage
+-Compare node failure rate of top25/50 individual nodes to the mean failure rate computed in the full dataset
+-Compare node failure rate of top25 CMS individual nodes to the their non-CMS called jobs failure rate
+
+
+<KADIR>
 What groups are best optimizing their memory usage in terms of percent of actual memory used of the memory requested for a job? What is the average percent for each group?
 
 Optimizing memory is more important for longer running jobs then shorter running jobs as the resources are tied up for longer. If jobs are weighted by runtime, what is the average percent of memory used of the requested memory for each group?
